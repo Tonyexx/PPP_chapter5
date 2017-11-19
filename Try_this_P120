@@ -1,0 +1,53 @@
+// Try_this_P120.cpp : Defines the entry point for the console application.
+//
+// exercise_7.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include"std_lib_facilities.h"
+
+//calculate the area
+int area(int length, int width)
+{
+	if (length <= 0 || width <= 0) return -1;
+	return length*width;
+}
+
+//calcualte the framed area
+int framed_area(int x, int y)
+{
+	constexpr int frame_width = 2;
+	if (x - frame_width <= 0 || y - frame_width <= 0)
+		error("non-positive area() argument called by framed_area()");
+	return area(x - frame_width, y - frame_width);
+}
+
+
+int f(int x, int y, int z)
+{
+
+	int area1 = area(x, y);
+	if (area1 <= 0) error("non-positive area");
+	int area2 = framed_area(1, z);
+	if (area2 <= 0) error("non-positive framed_area");
+	int area3 = framed_area(y, z);
+	if (area3 <= 0) error("non-positive framed_area");
+	double ratio = double(area1) / area3;
+
+	cout << "The area1= " << area1 << "\n"
+		<< "The area2= " << area2 << "\n"
+		<< "The area3= " << area3 << "\n"
+		<< "The ratio= " << ratio << "\n";
+	return 0;
+}
+
+int main()
+{
+	int x, y, z = 0;
+	cin >> x >> y >> z;
+	f(x, y, z);
+	system("pause");
+}
+
+
+
